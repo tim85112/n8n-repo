@@ -1,0 +1,15 @@
+<!doctype html>
+<meta charset="utf-8" />
+<title>LIFF Demo</title>
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<pre id="out">Loading…</pre>
+<script>
+(async () => {
+  // 先部署、再去 LINE Developers 建 LIFF 取得 ID 後，回來把下面改掉
+  await liff.init({ liffId: "YOUR_LIFF_ID" });
+  if (!liff.isLoggedIn()) liff.login();
+  const p = await liff.getProfile();
+  document.getElementById('out').textContent =
+    `User ID: ${p.userId}\nName: ${p.displayName}`;
+})();
+</script>
