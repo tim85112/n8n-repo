@@ -1,15 +1,32 @@
-<!doctype html>
-<meta charset="utf-8" />
-<title>LIFF Demo</title>
-<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-<pre id="out">Loading…</pre>
-<script>
-(async () => {
-  // 先部署、再去 LINE Developers 建 LIFF 取得 ID 後，回來把下面改掉
-  await liff.init({ liffId: "YOUR_LIFF_ID" });
-  if (!liff.isLoggedIn()) liff.login();
-  const p = await liff.getProfile();
-  document.getElementById('out').textContent =
-    `User ID: ${p.userId}\nName: ${p.displayName}`;
-})();
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>商辦駝獸 LIFF Demo</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body>
+  <h1>商辦駝獸 LIFF 測試</h1>
+  <button onclick="getProfile()">取得使用者資料</button>
+  <pre id="output"></pre>
+
+  <script>
+    // 你的 LIFF ID
+    const liffId = "2008063101-Yyxd53o5";  
+
+    async function main() {
+      await liff.init({ liffId });
+      if (!liff.isLoggedIn()) {
+        liff.login();
+      }
+    }
+
+    async function getProfile() {
+      const profile = await liff.getProfile();
+      document.getElementById("output").innerText = JSON.stringify(profile, null, 2);
+    }
+
+    main();
+  </script>
+</body>
+</html>
